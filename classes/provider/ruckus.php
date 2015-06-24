@@ -8,7 +8,6 @@ class provideroauth2ruckus extends League\OAuth2\Client\Provider\Ruckus {
     public $sskstyle = 'ruckus';
     public $name = 'ruckus'; // it must be the same as the XXXXX in the class name provideroauth2XXXXX.
     public $readablename = 'Ruckus';
-    public $scopes = array('public', 'client', 'developer');
 
     /**
      * Constructor.
@@ -23,7 +22,7 @@ class provideroauth2ruckus extends League\OAuth2\Client\Provider\Ruckus {
             'clientId'      => $CFG->ruckus->oauth2_application_id,
             'clientSecret'  => $CFG->ruckus->oauth2_secret,
             'redirectUri'   => $CFG->wwwroot .'/auth/googleoauth2/' . $this->name . '_redirect.php',
-            'scopes'        => $this->scopes,
+            'scopes'        => array($CFG->ruckus->oauth2_scope),
             'domain'        => $CFG->ruckus->oauth2_domain
         ]);
     }
