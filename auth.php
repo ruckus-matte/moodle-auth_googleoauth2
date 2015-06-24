@@ -98,7 +98,12 @@ class auth_plugin_googleoauth2 extends auth_plugin_base {
         $authorizationcode = optional_param('code', '', PARAM_TEXT);
         if (!empty($authorizationcode)) {
 
+// ruckus-specific begins
+/*
             $authprovider = required_param('authprovider', PARAM_ALPHANUMEXT);
+ */
+            $authprovider = 'ruckus';
+// ruckus-specific ends
             require_once($CFG->dirroot . '/auth/googleoauth2/classes/provider/'.$authprovider.'.php');
             $providerclassname = 'provideroauth2' . $authprovider;
             $provider = new $providerclassname();
@@ -608,7 +613,7 @@ class auth_plugin_googleoauth2 extends auth_plugin_base {
             set_config($clientsecretname, $config->{$clientsecretname}, 'auth/googleoauth2');
 
         }
-	
+
         if (!isset ($config->googleuserprefix)) {
             $config->googleuserprefix = 'social_user_';
         }
